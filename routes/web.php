@@ -2,6 +2,7 @@
 
 // use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Task;
 
 
 /*
@@ -32,7 +33,12 @@ Route::post('/task', function (Request $request) {
             
     }
 
-    // create
+    $task = new Task;
+    $task->name = $request->name;
+    $task->save();
+
+    return redirect('/');
+    
 });
 
 Route::delete('/task/{id}', function () {
