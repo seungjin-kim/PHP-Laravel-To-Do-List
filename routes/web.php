@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+// use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +19,23 @@ Route::get('/', function () {
     return view('tasks.index');
 });
 
-Route::post('/task', function () {
-    //
+Route::post('/task', function (Request $request) {
+    // dd($request);
+    $validator = Validator::make($request->all(), [
+        'name' => 'required|max:255',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect('/')
+            ->withInput()
+            ->withErrors($validator);
+            
+    }
+
+    // create
 });
 
 Route::delete('/task/{id}', function () {
     //
 });
+ 
