@@ -54,6 +54,7 @@
                   <td>
                     <form action="/task/{{ $task->id }}" method="POST">
                       <button type="submit">Delete Task</button>
+                      <!-- Method spoofing -->
                       {{ method_field('DELETE') }}
                       {{ csrf_field() }}
                     </form>
