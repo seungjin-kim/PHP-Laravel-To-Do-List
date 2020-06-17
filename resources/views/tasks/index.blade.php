@@ -30,7 +30,7 @@
 
 
     @if (count($tasks) > 0)
-    
+
       <div class="panel panel-default">
         <div class="panel-heading">
           Current Tasks
@@ -49,6 +49,14 @@
                   <td>
                     <!-- using a property to access name bc we're working with task model -->
                     {{  $task->name  }}
+                  </td>
+
+                  <td>
+                    <form action="/task/{{ $task->id }}" method="POST">
+                      <button type="submit">Delete Task</button>
+                      {{ method_field('DELETE') }}
+                      {{ csrf_field() }}
+                    </form>
                   </td>
                 </tr>
               @endforeach

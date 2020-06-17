@@ -47,6 +47,6 @@ Route::post('/task', function (Request $request) {
 });
 
 Route::delete('/task/{id}', function () {
-    //
+    return "works";
 });
  
