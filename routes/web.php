@@ -17,7 +17,12 @@ use App\Task;
 */
 
 Route::get('/', function () {
-    return view('tasks.index');
+    // Eloquent query builder
+    $tasks = Task::orderBy('created_at', 'asc')->get();
+    
+    return view('tasks.index', [
+        'tasks' => $tasks,
+    ]);
 });
 
 Route::post('/task', function (Request $request) {
@@ -30,9 +35,9 @@ Route::post('/task', function (Request $request) {
         return redirect('/')
             ->withInput()
             ->withErrors($validator);
-            
     }
 
+    // To create the task, use save method after creating and setting properties on a new Eloquent model
     $task = new Task;
     $task->name = $request->name;
     $task->save();

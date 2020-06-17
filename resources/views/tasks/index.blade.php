@@ -5,7 +5,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
       @include('common.errors')
-      
+
       <form action="/task" method="POST" class="form-horizontal">
         <div class="form-group">
           <label for="name" class="col-sm-3 control-label">Task</label>
@@ -27,5 +27,36 @@
       </form>
     </div>
   </div>
+
+
+    @if (count($tasks) > 0)
+    
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Current Tasks
+        </div>
+
+        <div class="panel-body">
+          <table class="table table-striped task-table">
+            <thead>
+              <th>Task</th>
+              <th>&nbsp;</th>
+            </thead>
+
+            <tbody>
+              @foreach ($tasks as $task)
+                <tr>
+                  <td>
+                    <!-- using a property to access name bc we're working with task model -->
+                    {{  $task->name  }}
+                  </td>
+                </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    @endif
 
 @endsection
